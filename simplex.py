@@ -1,6 +1,5 @@
 import heapq
 
-
 '''
    Return a rectangular identity matrix with the specified diagonal entiries, possibly
    starting in the middle.
@@ -170,6 +169,7 @@ def simplex(c, A, b):
 
 
 if __name__ == "__main__":
+   """
    c = [300, 250, 450]
    A = [[15, 20, 25], [35, 60, 60], [20, 30, 25], [0, 250, 0]]
    b = [1200, 3000, 1500, 500]
@@ -184,3 +184,30 @@ if __name__ == "__main__":
    t, s, v = simplex(c, A, b)
    print(s)
    print(v)
+   """
+
+
+   """
+   3x + 2y <= 1800
+   x <= 400
+   y <= 600
+
+   x>=0, y >=0
+   max: 30x + 50y
+   """
+   c = [30, 50]  # coefficients de la fonction objectif
+   A = [[3, 2], [1, 0], [0, 1]]  # Coefficients des contraintes
+   b = [1800, 400, 600]  # Côtés droits des contraintes
+
+   # Ajouter les variables d'écart
+   A[0] += [1, 0, 0]
+   A[1] += [0, 1, 0]
+   A[2] += [0, 0, 1]
+   c += [0, 0, 0]
+
+   # Résolution avec la méthode du simplexe
+   tableau, solution, objective_value = simplex(c, A, b)
+
+   # Affichage des résultats
+   print("Solution :", solution)
+   print("Valeur optimale de la fonction objectif :", objective_value)
